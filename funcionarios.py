@@ -26,11 +26,14 @@ def menu_funcionarios(conexao):
 def cadastrar_funcionario(conexao):
     cursor = conexao.cursor(dictionary=True)
     nome = input("Nome: ")
+    cpf = input("CPF: ")
     cargo = input("Cargo: ")
     salario = input("Salário: ")
+    telefone = input("Telefone: ")
+
     cursor.execute(f"""
-        INSERT INTO funcionarios (nome, cargo, salario)
-        VALUES ('{nome}', '{cargo}', '{salario}')
+        INSERT INTO funcionarios (nome, cpf, cargo, salario, telefone)
+        VALUES ('{nome}', '{cpf}', '{cargo}', '{salario}', '{telefone}')
     """)
     conexao.commit()
     cursor.close()
@@ -43,8 +46,10 @@ def verfuncionarios(conexao):
         print(f"""
         INFORMAÇÕES DO FUNCIONÁRIO {element['id']}
         Nome: {element['nome']}
+        CPF: {element['cpf']}
         Cargo: {element['cargo']}
         Salário: {element['salario']}
+        Telefone: {element['telefone']}
     """)
     cursor.close()
 
@@ -65,12 +70,15 @@ def editarfuncionario(conexao):
     
     if funcionario:
         novo_nome = input(f"Nome ({funcionario['nome']}): ") 
+        novo_cpf = input(f"CPF ({funcionario['cpf']}): ") 
         novo_cargo = input(f"Cargo ({funcionario['cargo']}): ") 
         novo_salario = input(f"Salário ({funcionario['salario']}): ") 
+        novo_telefone = input(f"Telefone ({funcionario['telefone']}): ") 
+
 
         cursor.execute(f"""
             UPDATE funcionarios
-            SET nome = '{novo_nome}', cargo = '{novo_cargo}', salario = '{novo_salario}'
+            SET nome = '{novo_nome}', cpf = '{novo_cpf}', cargo = '{novo_cargo}', salario = '{novo_salario}', telefone = '{novo_telefone}'
             WHERE id = {id}
         """)
         conexao.commit()

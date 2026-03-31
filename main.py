@@ -1,12 +1,18 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
 from produtos import menu_produtos 
 from funcionarios import menu_funcionarios
+from clientes import menu_clientes
+from vendas import menu_vendas
+
+load_dotenv() 
 
 conexao = mysql.connector.connect(
-    host='DB_HOST',
-    user='DB_USER',
-    password='DB_PASSWORD',
-    database='DB_NAME',
+    host=os.getenv('DB_HOST'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    database=os.getenv('DB_NAME')
 )
 
 def menu():
@@ -23,11 +29,11 @@ def menu():
         if opcao == "1":
             menu_produtos(conexao) 
         if opcao == "2":
-            print("Em construção...")
+            menu_funcionarios(conexao)
         if opcao == "3":
-            print("Em construção...")
+            menu_clientes(conexao)
         if opcao == "4":
-            print("Em construção...")
+            menu_vendas(conexao)
         elif opcao == "0":
             print("Saindo...")
             break
