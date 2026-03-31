@@ -4,7 +4,7 @@ from produtos import menu_produtos
 conexao = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='root',
+    password='hercules123.Batata',
     database='SUPERMERCADO',
 )
 
