@@ -28,11 +28,11 @@ def menu():
 
         if opcao == "1":
             menu_produtos(conexao) 
-        if opcao == "2":
+        elif opcao == "2":
             menu_funcionarios(conexao)
-        if opcao == "3":
+        elif opcao == "3":
             menu_clientes(conexao)
-        if opcao == "4":
+        elif opcao == "4":
             menu_vendas(conexao)
         elif opcao == "0":
             print("Saindo...")
